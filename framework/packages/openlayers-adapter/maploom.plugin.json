@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "1.0",
+  "name": "@maploom/openlayers-adapter",
+  "packageName": "@maploom/openlayers-adapter",
+  "displayName": "MapLoom OpenLayers Adapter",
+  "version": "0.1.0",
+  "description": "OpenLayers map adapter and built-in map capabilities for MapLoom.",
+  "author": "MapLoom",
+  "frameworkVersion": "^0.1.0",
+  "categories": ["adapter", "capabilities"],
+  "keywords": ["maploom", "openlayers", "adapter", "capabilities"],
+  "capabilities": [
+    {
+      "type": "zoom-to-feature",
+      "title": "Zoom To Feature",
+      "description": "Fit the map view to a feature geometry.",
+      "adapter": "openlayers",
+      "inputSchema": "./schemas/capabilities/feature-payload.schema.json"
+    },
+    {
+      "type": "clear-highlight",
+      "title": "Clear Highlight",
+      "description": "Clear the current highlighted feature.",
+      "adapter": "openlayers",
+      "inputSchema": "./schemas/capabilities/empty-payload.schema.json"
+    },
+    {
+      "type": "filter-layer",
+      "title": "Filter Layer",
+      "description": "Filter visible features in a vector layer.",
+      "adapter": "openlayers",
+      "inputSchema": "./schemas/capabilities/filter-layer.schema.json"
+    },
+    {
+      "type": "set-layer-style",
+      "title": "Set Layer Style",
+      "description": "Apply a MapLoom style spec to a vector layer.",
+      "adapter": "openlayers",
+      "inputSchema": "./schemas/capabilities/set-layer-style.schema.json"
+    }
+  ]
+}

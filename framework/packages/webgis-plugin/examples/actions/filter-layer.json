@@ -1,0 +1,5 @@
+{
+  "type": "filter-layer",
+  "target": "facilitiesLayer",
+  "filter": "$event.filter"
+}

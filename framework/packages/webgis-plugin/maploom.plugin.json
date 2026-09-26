@@ -1,0 +1,140 @@
+{
+  "schemaVersion": "1.0",
+  "name": "@maploom/webgis-plugin",
+  "packageName": "@maploom/webgis-plugin",
+  "displayName": "MapLoom WebGIS Plugin",
+  "version": "0.1.0",
+  "description": "Common WebGIS widgets, actions, and interactions for MapLoom applications.",
+  "author": "MapLoom",
+  "frameworkVersion": "^0.1.0",
+  "categories": ["widgets", "actions", "templates"],
+  "keywords": ["maploom", "webgis", "widgets", "actions"],
+  "widgets": [
+    {
+      "type": "layer-list",
+      "title": "Layer List",
+      "description": "Layer visibility control widget.",
+      "schema": "./schemas/widgets/layer-list.schema.json",
+      "appSpec": { "id": "layers", "type": "layer-list", "region": "left", "title": "图层控制", "layers": ["facilitiesLayer"] },
+      "emits": [
+        {
+          "event": "widget.{id}.layer-visibility-change",
+          "description": "Emitted when a user toggles a configured layer.",
+          "payloadSchema": "./schemas/events/layer-visibility-change.schema.json",
+          "example": { "layerId": "facilitiesLayer", "visible": true }
+        }
+      ],
+      "examples": [{ "title": "Layer list widget", "path": "./examples/widgets/layer-list.json" }]
+    },
+    {
+      "type": "attribute-panel",
+      "title": "Attribute Panel",
+      "description": "Displays selected feature properties from shared state.",
+      "schema": "./schemas/widgets/attribute-panel.schema.json",
+      "appSpec": { "id": "details", "type": "attribute-panel", "region": "right", "title": "选中对象详情", "fields": ["name", "type", "status"], "bind": { "feature": "selection.feature" } },
+      "examples": [{ "title": "Attribute panel widget", "path": "./examples/widgets/attribute-panel.json" }]
+    },
+    {
+      "type": "attribute-table",
+      "title": "Attribute Table",
+      "description": "Displays layer features in a table and emits row click events.",
+      "schema": "./schemas/widgets/attribute-table.schema.json",
+      "appSpec": { "id": "facilitiesTable", "type": "attribute-table", "region": "bottom", "title": "属性表", "sourceLayer": "facilitiesLayer", "fields": ["name", "type", "status"] },
+      "emits": [
+        {
+          "event": "widget.{id}.row-click",
+          "description": "Emitted when a table row is clicked.",
+          "payloadSchema": "./schemas/events/feature-event.schema.json",
+          "example": { "feature": { "type": "Feature", "properties": { "name": "示例设施" }, "geometry": { "type": "Point", "coordinates": [118.79, 32.04] } } }
+        }
+      ],
+      "examples": [{ "title": "Attribute table widget", "path": "./examples/widgets/attribute-table.json" }]
+    },
+    {
+      "type": "filter-panel",
+      "title": "Filter Panel",
+      "description": "Multi-field attribute filter widget.",
+      "schema": "./schemas/widgets/filter-panel.schema.json",
+      "appSpec": { "id": "facilityFilter", "type": "filter-panel", "region": "left", "title": "筛选", "fields": [{ "field": "type", "label": "类型", "options": [{ "label": "全部", "value": "__all__" }] }] },
+      "emits": [
+        {
+          "event": "widget.{id}.filter-change",
+          "description": "Emitted when filter controls change.",
+          "payloadSchema": "./schemas/events/filter-change.schema.json",
+          "example": { "filter": { "operator": "all" } }
+        }
+      ],
+      "examples": [{ "title": "Filter panel widget", "path": "./examples/widgets/filter-panel.json" }]
+    },
+    {
+      "type": "statistics-panel",
+      "title": "Statistics Panel",
+      "description": "Calculates simple metrics for features in a layer.",
+      "schema": "./schemas/widgets/statistics-panel.schema.json",
+      "appSpec": { "id": "facilityStats", "type": "statistics-panel", "region": "right", "title": "统计", "sourceLayer": "facilitiesLayer", "metrics": [{ "type": "count", "label": "数量" }] },
+      "examples": [{ "title": "Statistics panel widget", "path": "./examples/widgets/statistics-panel.json" }]
+    },
+    {
+      "type": "style-switcher",
+      "title": "Style Switcher",
+      "description": "Switches a target layer between predefined thematic styles.",
+      "schema": "./schemas/widgets/style-switcher.schema.json",
+      "appSpec": { "id": "styleSwitcher", "type": "style-switcher", "region": "left", "title": "专题样式", "targetLayer": "facilitiesLayer", "styles": [] },
+      "emits": [
+        {
+          "event": "widget.{id}.style-change",
+          "description": "Emitted when the selected style changes.",
+          "payloadSchema": "./schemas/events/style-change.schema.json",
+          "example": { "layerId": "facilitiesLayer", "style": { "type": "simple", "color": "#2563eb" } }
+        }
+      ],
+      "examples": [{ "title": "Style switcher widget", "path": "./examples/widgets/style-switcher.json" }]
+    },
+    {
+      "type": "action-button",
+      "title": "Action Button",
+      "description": "A simple button that emits a configurable click event.",
+      "schema": "./schemas/widgets/action-button.schema.json",
+      "appSpec": { "id": "clearSelection", "type": "action-button", "region": "left", "label": "清除选择" },
+      "emits": [
+        {
+          "event": "widget.{id}.click",
+          "description": "Emitted when the button is clicked.",
+          "payloadSchema": "./schemas/events/button-click.schema.json",
+          "example": {}
+        }
+      ],
+      "examples": [{ "title": "Action button widget", "path": "./examples/widgets/action-button.json" }]
+    },
+    {
+      "type": "state-inspector",
+      "title": "State Inspector",
+      "description": "Debug widget that renders a selected state path as JSON.",
+      "schema": "./schemas/widgets/state-inspector.schema.json",
+      "appSpec": { "id": "debugSelection", "type": "state-inspector", "region": "right", "title": "状态调试", "path": "selection.feature" },
+      "examples": [{ "title": "State inspector widget", "path": "./examples/widgets/state-inspector.json" }]
+    }
+  ],
+  "actions": [
+    { "type": "set-state", "title": "Set State", "description": "Set a value in the shared application state.", "schema": "./schemas/actions/set-state.schema.json", "appSpec": { "type": "set-state", "path": "selection.feature", "value": "$event.feature" }, "examples": [{ "title": "Set selected feature", "path": "./examples/actions/set-state.json" }] },
+    { "type": "set-layer-visible", "title": "Set Layer Visible", "description": "Toggle a map layer.", "schema": "./schemas/actions/set-layer-visible.schema.json", "appSpec": { "type": "set-layer-visible", "target": "$event.layerId", "visible": "$event.visible" }, "examples": [{ "title": "Toggle layer", "path": "./examples/actions/set-layer-visible.json" }] },
+    { "type": "highlight-feature", "title": "Highlight Feature", "description": "Highlight a feature on the map.", "schema": "./schemas/actions/highlight-feature.schema.json", "appSpec": { "type": "highlight-feature", "feature": "$event.feature" }, "examples": [{ "title": "Highlight event feature", "path": "./examples/actions/highlight-feature.json" }] },
+    { "type": "show-popup", "title": "Show Popup", "description": "Show feature attributes in a popup.", "schema": "./schemas/actions/show-popup.schema.json", "appSpec": { "type": "show-popup", "feature": "$event.feature", "fields": ["name", "type"] }, "examples": [{ "title": "Show feature popup", "path": "./examples/actions/show-popup.json" }] },
+    { "type": "zoom-to-feature", "title": "Zoom To Feature", "description": "Zoom to a feature through adapter capability.", "schema": "./schemas/actions/zoom-to-feature.schema.json", "appSpec": { "type": "zoom-to-feature", "feature": "$event.feature" }, "requiresCapabilities": [{ "type": "zoom-to-feature", "adapter": "openlayers", "required": true }], "examples": [{ "title": "Zoom to clicked row", "path": "./examples/actions/zoom-to-feature.json" }] },
+    { "type": "filter-layer", "title": "Filter Layer", "description": "Filter a layer through adapter capability.", "schema": "./schemas/actions/filter-layer.schema.json", "appSpec": { "type": "filter-layer", "target": "facilitiesLayer", "filter": "$event.filter" }, "requiresCapabilities": [{ "type": "filter-layer", "adapter": "openlayers", "required": true }], "examples": [{ "title": "Apply filter", "path": "./examples/actions/filter-layer.json" }] },
+    { "type": "set-layer-style", "title": "Set Layer Style", "description": "Change layer style through adapter capability.", "schema": "./schemas/actions/set-layer-style.schema.json", "appSpec": { "type": "set-layer-style", "target": "$event.layerId", "style": "$event.style" }, "requiresCapabilities": [{ "type": "set-layer-style", "adapter": "openlayers", "required": true }], "examples": [{ "title": "Apply thematic style", "path": "./examples/actions/set-layer-style.json" }] },
+    { "type": "clear-highlight", "title": "Clear Highlight", "description": "Clear selected highlight.", "schema": "./schemas/actions/clear-highlight.schema.json", "appSpec": { "type": "clear-highlight" }, "requiresCapabilities": [{ "type": "clear-highlight", "adapter": "openlayers", "required": true }], "examples": [{ "title": "Clear highlight", "path": "./examples/actions/clear-highlight.json" }] },
+    { "type": "emit-event", "title": "Emit Event", "description": "Emit an event from an action chain.", "schema": "./schemas/actions/emit-event.schema.json", "appSpec": { "type": "emit-event", "event": "custom.event", "payload": "$event" }, "examples": [{ "title": "Emit custom event", "path": "./examples/actions/emit-event.json" }] }
+  ],
+  "templates": [
+    {
+      "id": "simple-query-app",
+      "title": "Simple Query App",
+      "description": "A minimal map application with layer control, feature click, popup, details, and table selection.",
+      "appSpec": "./templates/simple-query-app/app-spec.json",
+      "theme": "./templates/simple-query-app/theme.css",
+      "data": ["./templates/simple-query-app/data/facilities.geojson"],
+      "tags": ["starter", "query", "table"]
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "widget": {
+    "id": "facilityClustering",
+    "type": "dbscan-clustering-panel",
+    "region": "left",
+    "sourceLayer": "facilitiesLayer",
+    "epsMeters": 4000,
+    "minPoints": 2,
+    "statePath": "analysis.dbscan"
+  },
+  "binding": {
+    "event": "widget.facilityClustering.run",
+    "actions": [
+      {
+        "type": "run-dbscan-clustering",
+        "endpoint": "http://127.0.0.1:8000/api/analysis/dbscan",
+        "sourceLayer": "$event.sourceLayer",
+        "epsMeters": "$event.epsMeters",
+        "minPoints": "$event.minPoints",
+        "statePath": "analysis.dbscan",
+        "resultLayerId": "facilityClusters"
+      }
+    ]
+  }
+}

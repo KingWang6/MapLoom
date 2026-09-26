@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "highlight-feature action",
+  "type": "object",
+  "required": [
+    "type",
+    "feature"
+  ],
+  "properties": {
+    "type": {
+      "const": "highlight-feature"
+    },
+    "feature": {},
+    "style": {
+      "type": "object"
+    }
+  }
+}

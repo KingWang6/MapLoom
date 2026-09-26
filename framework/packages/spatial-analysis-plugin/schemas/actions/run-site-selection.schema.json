@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "run-site-selection action",
+  "type": "object",
+  "required": ["type", "candidateLayer", "demandLayer", "riskLayer"],
+  "properties": {
+    "type": {"const": "run-site-selection"},
+    "endpoint": {"type": "string"},
+    "candidateLayer": {"type": "string"},
+    "demandLayer": {"type": "string"},
+    "riskLayer": {"type": "string"},
+    "serviceRadiusMeters": {"type": ["number", "string"]},
+    "weights": {"type": "object"},
+    "statePath": {"type": "string"},
+    "resultLayerId": {"type": "string"},
+    "resultLayerTitle": {"type": "string"}
+  },
+  "additionalProperties": true
+}

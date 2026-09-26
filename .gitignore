@@ -1,0 +1,11 @@
+node_modules/
+dist/
+!framework/packages/*/dist/
+!framework/packages/*/dist/**
+.DS_Store
+.idea/
+
+# Local logs and environment files.
+*.log
+.env
+.env.*

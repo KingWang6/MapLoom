@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "filter-panel widget",
+  "type": "object",
+  "required": ["id", "type", "region", "fields"],
+  "properties": {
+    "id": { "type": "string" },
+    "type": { "const": "filter-panel" },
+    "region": { "enum": ["left", "right", "bottom", "top"] },
+    "title": { "type": "string" },
+    "className": { "type": "string" },
+    "fields": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["field"],
+        "properties": {
+          "field": { "type": "string" },
+          "label": { "type": "string" },
+          "value": {},
+          "placeholder": { "type": "string" },
+          "dependsOn": { "type": "string" },
+          "optionGroups": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "oneOf": [
+                  {"type": "string"},
+                  {
+                    "type": "object",
+                    "required": ["label", "value"],
+                    "properties": {
+                      "label": {"type": "string"},
+                      "value": {}
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["label", "value"],
+              "properties": {
+                "label": { "type": "string" },
+                "value": {}
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

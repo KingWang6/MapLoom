@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "POI grid analysis panel widget",
+  "type": "object",
+  "required": ["id", "type", "region", "sourceLayer"],
+  "properties": {
+    "id": {"type": "string"},
+    "type": {"const": "poi-grid-analysis-panel"},
+    "region": {"enum": ["left", "right", "top", "bottom"]},
+    "sourceLayer": {"type": "string"},
+    "gridSizeMeters": {"enum": [500, 1000]},
+    "category": {"type": "string"},
+    "district": {"type": "string"},
+    "categoryOptions": {"type": "array"},
+    "districtOptions": {"type": "array"},
+    "showDataFilters": {"type": "boolean"},
+    "queryStatePath": {"type": "string"},
+    "statePath": {"type": "string"}
+  },
+  "additionalProperties": true
+}

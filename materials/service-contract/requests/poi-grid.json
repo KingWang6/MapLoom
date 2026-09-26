@@ -1,0 +1,4 @@
+{
+  "query": {"district": "__all__"},
+  "gridSizeMeters": 1000
+}

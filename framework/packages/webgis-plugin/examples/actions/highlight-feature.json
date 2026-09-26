@@ -1,0 +1,4 @@
+{
+  "type": "highlight-feature",
+  "feature": "$event.feature"
+}

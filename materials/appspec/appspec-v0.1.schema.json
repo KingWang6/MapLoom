@@ -1,0 +1,364 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://maploom.dev/schemas/appspec-v0.1.schema.json",
+  "title": "MapLoom AppSpec v0.1",
+  "type": "object",
+  "required": [
+    "version",
+    "map",
+    "sources",
+    "layers"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "const": "0.1"
+    },
+    "map": {
+      "$ref": "#/$defs/map"
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/source"
+      }
+    },
+    "layers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/layer"
+      }
+    },
+    "widgets": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/widget"
+      }
+    },
+    "interactions": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/interaction"
+      }
+    },
+    "bindings": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/binding"
+      }
+    },
+    "state": {
+      "type": "object",
+      "default": {},
+      "additionalProperties": true
+    }
+  },
+  "$defs": {
+    "identifier": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+    },
+    "coordinate": {
+      "type": "array",
+      "prefixItems": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        }
+      ],
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "map": {
+      "type": "object",
+      "required": [
+        "container",
+        "center",
+        "zoom"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "container": {
+          "type": "string",
+          "minLength": 1
+        },
+        "center": {
+          "$ref": "#/$defs/coordinate"
+        },
+        "zoom": {
+          "type": "number"
+        }
+      }
+    },
+    "geojsonFeatureCollection": {
+      "type": "object",
+      "required": [
+        "type",
+        "features"
+      ],
+      "properties": {
+        "type": {
+          "const": "FeatureCollection"
+        },
+        "features": {
+          "type": "array"
+        }
+      },
+      "additionalProperties": true
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "id",
+        "type"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "type": {
+          "const": "geojson"
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1
+        },
+        "data": {
+          "$ref": "#/$defs/geojsonFeatureCollection"
+        },
+        "query": {
+          "type": "object",
+          "additionalProperties": {
+            "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+            ]
+          }
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "url"
+          ]
+        },
+        {
+          "required": [
+            "data"
+          ]
+        }
+      ]
+    },
+    "style": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "enum": [
+            "simple",
+            "category",
+            "class-breaks"
+          ]
+        },
+        "field": {
+          "type": "string"
+        },
+        "fillColor": {
+          "type": "string"
+        },
+        "strokeColor": {
+          "type": "string"
+        },
+        "strokeWidth": {
+          "type": "number",
+          "minimum": 0
+        },
+        "radius": {
+          "type": "number",
+          "minimum": 0
+        },
+        "color": {
+          "type": "string"
+        },
+        "rules": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/style"
+          }
+        },
+        "breaks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "min",
+              "max"
+            ],
+            "properties": {
+              "min": {
+                "type": "number"
+              },
+              "max": {
+                "type": "number"
+              },
+              "style": {
+                "$ref": "#/$defs/style"
+              },
+              "fillColor": {
+                "type": "string"
+              },
+              "strokeColor": {
+                "type": "string"
+              },
+              "color": {
+                "type": "string"
+              },
+              "radius": {
+                "type": "number",
+                "minimum": 0
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "default": {
+          "$ref": "#/$defs/style"
+        }
+      }
+    },
+    "layer": {
+      "type": "object",
+      "required": [
+        "id",
+        "type",
+        "source"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "title": {
+          "type": "string"
+        },
+        "type": {
+          "const": "vector"
+        },
+        "source": {
+          "$ref": "#/$defs/identifier"
+        },
+        "visible": {
+          "type": "boolean",
+          "default": true
+        },
+        "style": {
+          "$ref": "#/$defs/style"
+        }
+      }
+    },
+    "widget": {
+      "type": "object",
+      "required": [
+        "id",
+        "type",
+        "region"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "type": {
+          "type": "string",
+          "minLength": 1
+        },
+        "region": {
+          "enum": [
+            "left",
+            "right",
+            "top",
+            "bottom"
+          ]
+        },
+        "title": {
+          "type": "string"
+        },
+        "className": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true,
+      "$comment": "Additional properties are owned by the plugin schema selected by type."
+    },
+    "action": {
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": true,
+      "$comment": "Additional properties are owned by the plugin schema selected by type."
+    },
+    "interaction": {
+      "type": "object",
+      "required": [
+        "id",
+        "type",
+        "actions"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "type": {
+          "type": "string",
+          "minLength": 1
+        },
+        "targetLayer": {
+          "$ref": "#/$defs/identifier"
+        },
+        "actions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/action"
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "binding": {
+      "type": "object",
+      "required": [
+        "event",
+        "actions"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "event": {
+          "type": "string",
+          "minLength": 1
+        },
+        "actions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/action"
+          }
+        }
+      }
+    }
+  }
+}

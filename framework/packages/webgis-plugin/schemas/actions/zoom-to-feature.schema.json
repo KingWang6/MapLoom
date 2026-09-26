@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "zoom-to-feature action",
+  "type": "object",
+  "required": [
+    "type",
+    "feature"
+  ],
+  "properties": {
+    "type": {
+      "const": "zoom-to-feature"
+    },
+    "feature": {}
+  }
+}

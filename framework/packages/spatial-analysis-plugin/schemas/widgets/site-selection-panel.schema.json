@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "site-selection-panel widget",
+  "type": "object",
+  "required": ["id", "type", "region", "candidateLayer", "demandLayer", "riskLayer"],
+  "properties": {
+    "id": {"type": "string", "minLength": 1},
+    "type": {"const": "site-selection-panel"},
+    "region": {"enum": ["left", "right", "top", "bottom"]},
+    "candidateLayer": {"type": "string"},
+    "demandLayer": {"type": "string"},
+    "riskLayer": {"type": "string"},
+    "serviceRadiusMeters": {"type": "number", "exclusiveMinimum": 0},
+    "statePath": {"type": "string"},
+    "weights": {
+      "type": "object",
+      "properties": {
+        "coverage": {"type": "number", "minimum": 0},
+        "capacity": {"type": "number", "minimum": 0},
+        "safety": {"type": "number", "minimum": 0}
+      }
+    }
+  },
+  "additionalProperties": true
+}

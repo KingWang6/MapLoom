@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "style-switcher widget",
+  "type": "object",
+  "required": ["id", "type", "region", "targetLayer", "styles"],
+  "properties": {
+    "id": { "type": "string" },
+    "type": { "const": "style-switcher" },
+    "region": { "enum": ["left", "right", "bottom", "top"] },
+    "title": { "type": "string" },
+    "className": { "type": "string" },
+    "targetLayer": { "type": "string" },
+    "styles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "label", "style"],
+        "properties": {
+          "id": { "type": "string" },
+          "label": { "type": "string" },
+          "style": { "type": "object" }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "set-layer-visible action",
+  "type": "object",
+  "required": [
+    "type",
+    "target",
+    "visible"
+  ],
+  "properties": {
+    "type": {
+      "const": "set-layer-visible"
+    },
+    "target": {},
+    "visible": {}
+  }
+}

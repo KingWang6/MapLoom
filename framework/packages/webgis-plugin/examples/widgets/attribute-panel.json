@@ -1,0 +1,1 @@
+{ "id": "details", "type": "attribute-panel", "region": "right", "title": "选中对象详情", "fields": ["name", "type", "status"], "bind": { "feature": "selection.feature" } }

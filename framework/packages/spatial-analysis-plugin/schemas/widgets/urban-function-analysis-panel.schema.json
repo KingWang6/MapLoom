@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Urban function analysis panel widget",
+  "type": "object",
+  "required": ["id", "type", "region", "sourceLayer"],
+  "properties": {
+    "id": {"type": "string"},
+    "type": {"const": "urban-function-analysis-panel"},
+    "region": {"enum": ["left", "right", "top", "bottom"]},
+    "sourceLayer": {"type": "string"},
+    "gridSizeMeters": {"enum": [500, 1000]},
+    "minPoi": {"type": "integer", "minimum": 1},
+    "mixedThreshold": {"type": "number", "minimum": 0, "maximum": 1},
+    "district": {"type": "string"},
+    "districtOptions": {"type": "array"},
+    "showDataFilters": {"type": "boolean"},
+    "queryStatePath": {"type": "string"},
+    "statePath": {"type": "string"}
+  },
+  "additionalProperties": true
+}

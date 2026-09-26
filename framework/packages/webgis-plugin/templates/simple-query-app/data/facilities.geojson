@@ -1,0 +1,23 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "id": "fac-001",
+      "type": "Feature",
+      "properties": { "name": "鼓楼应急避难点", "type": "避难场所", "status": "正常", "district": "鼓楼区", "capacity": 1200 },
+      "geometry": { "type": "Point", "coordinates": [118.769, 32.066] }
+    },
+    {
+      "id": "fac-002",
+      "type": "Feature",
+      "properties": { "name": "玄武湖医疗站", "type": "医疗站", "status": "繁忙", "district": "玄武区", "capacity": 380 },
+      "geometry": { "type": "Point", "coordinates": [118.797, 32.074] }
+    },
+    {
+      "id": "fac-003",
+      "type": "Feature",
+      "properties": { "name": "秦淮物资仓库", "type": "物资仓库", "status": "正常", "district": "秦淮区", "capacity": 850 },
+      "geometry": { "type": "Point", "coordinates": [118.789, 32.025] }
+    }
+  ]
+}

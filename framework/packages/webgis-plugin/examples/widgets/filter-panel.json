@@ -1,0 +1,1 @@
+{ "id": "facilityFilter", "type": "filter-panel", "region": "left", "title": "筛选", "fields": [{ "field": "type", "label": "类型", "options": [{ "label": "全部", "value": "__all__" }, { "label": "避难场所", "value": "避难场所" }] }] }

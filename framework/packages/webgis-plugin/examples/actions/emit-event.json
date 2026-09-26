@@ -1,0 +1,5 @@
+{
+  "type": "emit-event",
+  "event": "custom.event",
+  "payload": "$event"
+}

@@ -1,0 +1,143 @@
+openapi: 3.1.0
+info:
+  title: MapLoom External Spatial-Analysis Contract
+  version: 0.1.0
+  description: >-
+    Interface contract used by the released prototype. The external service
+    implementation and restricted manuscript dataset are not distributed; the
+    runnable case uses a separately attributed OpenStreetMap replacement fixture.
+servers:
+  - url: http://127.0.0.1:8000
+paths:
+  /health:
+    get:
+      summary: Report service availability and DBSCAN engine identifier
+      responses:
+        "200":
+          description: Service status
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [status, dbscanAlgorithm]
+                properties:
+                  status: {type: string}
+                  dbscanAlgorithm: {type: string}
+  /api/boundary:
+    get:
+      summary: Return the study-area boundary as GeoJSON
+      responses:
+        "200": {$ref: "#/components/responses/GeoJSONResponse"}
+  /api/poi:
+    get:
+      summary: Query POI features
+      parameters:
+        - {in: query, name: district, schema: {type: string}}
+        - {in: query, name: category_l1, schema: {type: string}}
+        - {in: query, name: category_l2, schema: {type: string}}
+        - {in: query, name: limit, schema: {type: integer, minimum: 1, maximum: 50000, default: 20000}}
+        - {in: query, name: offset, schema: {type: integer, minimum: 0, default: 0}}
+      responses:
+        "200": {$ref: "#/components/responses/GeoJSONResponse"}
+  /api/analysis/dbscan:
+    post:
+      summary: Invoke externally supplied DBSCAN clustering
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: "#/components/schemas/DbscanRequest"}
+      responses:
+        "200": {$ref: "#/components/responses/AnalysisResponse"}
+        "400": {$ref: "#/components/responses/ErrorResponse"}
+  /api/analysis/poi-grid:
+    post:
+      summary: Invoke externally supplied regular-grid analysis
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: "#/components/schemas/GridRequest"}
+      responses:
+        "200": {$ref: "#/components/responses/AnalysisResponse"}
+        "400": {$ref: "#/components/responses/ErrorResponse"}
+  /api/analysis/urban-function:
+    post:
+      summary: Invoke externally supplied urban-function identification
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: "#/components/schemas/UrbanFunctionRequest"}
+      responses:
+        "200": {$ref: "#/components/responses/AnalysisResponse"}
+        "400": {$ref: "#/components/responses/ErrorResponse"}
+components:
+  schemas:
+    Query:
+      type: object
+      additionalProperties: true
+    FeatureCollection:
+      type: object
+      required: [type, features]
+      properties:
+        type: {const: FeatureCollection}
+        features:
+          type: array
+          items: {type: object}
+      additionalProperties: true
+    DbscanRequest:
+      type: object
+      required: [epsMeters, minPoints]
+      properties:
+        query: {$ref: "#/components/schemas/Query"}
+        featureCollection: {$ref: "#/components/schemas/FeatureCollection"}
+        epsMeters: {type: number, exclusiveMinimum: 0}
+        minPoints: {type: integer, minimum: 1}
+      anyOf:
+        - required: [query]
+        - required: [featureCollection]
+    GridRequest:
+      type: object
+      required: [gridSizeMeters]
+      properties:
+        query: {$ref: "#/components/schemas/Query"}
+        featureCollection: {$ref: "#/components/schemas/FeatureCollection"}
+        gridSizeMeters: {type: number, exclusiveMinimum: 0}
+      anyOf:
+        - required: [query]
+        - required: [featureCollection]
+    UrbanFunctionRequest:
+      allOf:
+        - {$ref: "#/components/schemas/GridRequest"}
+        - type: object
+          required: [minPoi, mixedThreshold]
+          properties:
+            minPoi: {type: integer, minimum: 1}
+            mixedThreshold: {type: number, minimum: 0, maximum: 1}
+  responses:
+    GeoJSONResponse:
+      description: GeoJSON FeatureCollection
+      content:
+        application/json:
+          schema: {$ref: "#/components/schemas/FeatureCollection"}
+    AnalysisResponse:
+      description: Analysis result containing GeoJSON and summary fields
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [featureCollection, summary]
+            properties:
+              featureCollection: {$ref: "#/components/schemas/FeatureCollection"}
+              summary: {type: object, additionalProperties: true}
+            additionalProperties: true
+    ErrorResponse:
+      description: Invalid or unsupported request
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [detail]
+            properties:
+              detail: {type: string}

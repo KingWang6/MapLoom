@@ -1,0 +1,5 @@
+{
+  "query": {"district": "__all__"},
+  "epsMeters": 400,
+  "minPoints": 10
+}

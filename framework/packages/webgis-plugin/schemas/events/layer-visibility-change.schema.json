@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "layer visibility change event",
+  "type": "object",
+  "required": [
+    "layerId",
+    "visible"
+  ],
+  "properties": {
+    "layerId": {
+      "type": "string"
+    },
+    "visible": {
+      "type": "boolean"
+    }
+  }
+}

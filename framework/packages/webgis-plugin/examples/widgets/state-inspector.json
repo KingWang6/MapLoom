@@ -1,0 +1,1 @@
+{ "id": "debugSelection", "type": "state-inspector", "region": "right", "title": "状态调试", "path": "selection.feature" }

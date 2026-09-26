@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "style change event",
+  "type": "object",
+  "required": [
+    "layerId",
+    "style"
+  ],
+  "properties": {
+    "layerId": {
+      "type": "string"
+    },
+    "style": {
+      "type": "object"
+    }
+  }
+}

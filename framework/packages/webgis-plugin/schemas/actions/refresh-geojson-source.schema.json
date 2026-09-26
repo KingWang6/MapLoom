@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Refresh remote GeoJSON source",
+  "type": "object",
+  "required": ["type", "source"],
+  "properties": {
+    "type": {"const": "refresh-geojson-source"},
+    "source": {"type": "string"},
+    "url": {"type": "string"},
+    "query": {"type": "object"},
+    "statePath": {"type": "string"}
+  },
+  "additionalProperties": true
+}

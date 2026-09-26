@@ -1,0 +1,1 @@
+{ "id": "facilityStats", "type": "statistics-panel", "region": "right", "title": "统计", "sourceLayer": "facilitiesLayer", "metrics": [{ "type": "count", "label": "数量" }] }

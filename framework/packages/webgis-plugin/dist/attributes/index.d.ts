@@ -1,0 +1,1 @@
+export { registerAttributeTableWidget } from "./attributeTableWidget";

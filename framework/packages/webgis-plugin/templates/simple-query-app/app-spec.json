@@ -1,0 +1,93 @@
+{
+  "version": "0.1",
+  "state": {
+    "selection": {
+      "feature": null
+    }
+  },
+  "map": {
+    "container": "map",
+    "center": [118.79, 32.045],
+    "zoom": 12
+  },
+  "sources": [
+    {
+      "id": "facilitiesSource",
+      "type": "geojson",
+      "url": "./data/facilities.geojson"
+    }
+  ],
+  "layers": [
+    {
+      "id": "facilitiesLayer",
+      "title": "应急设施",
+      "type": "vector",
+      "source": "facilitiesSource",
+      "visible": true,
+      "style": {
+        "type": "category",
+        "field": "type",
+        "rules": {
+          "避难场所": { "color": "#22c55e", "strokeColor": "#14532d", "radius": 8 },
+          "医疗站": { "color": "#ef4444", "strokeColor": "#7f1d1d", "radius": 8 },
+          "物资仓库": { "color": "#3b82f6", "strokeColor": "#1e3a8a", "radius": 8 }
+        },
+        "default": { "color": "#64748b", "strokeColor": "#0f172a", "radius": 7 }
+      }
+    }
+  ],
+  "widgets": [
+    {
+      "id": "layers",
+      "type": "layer-list",
+      "region": "left",
+      "title": "图层控制",
+      "layers": ["facilitiesLayer"]
+    },
+    {
+      "id": "details",
+      "type": "attribute-panel",
+      "region": "right",
+      "title": "选中设施详情",
+      "fields": ["name", "type", "status", "district", "capacity"],
+      "bind": { "feature": "selection.feature" }
+    },
+    {
+      "id": "facilitiesTable",
+      "type": "attribute-table",
+      "region": "bottom",
+      "title": "应急设施属性表",
+      "sourceLayer": "facilitiesLayer",
+      "fields": ["name", "type", "status", "district", "capacity"]
+    }
+  ],
+  "interactions": [
+    {
+      "id": "clickFacilities",
+      "type": "feature-click",
+      "targetLayer": "facilitiesLayer",
+      "actions": [
+        { "type": "set-state", "path": "selection.feature", "value": "$event.feature" },
+        { "type": "highlight-feature", "feature": "$event.feature" },
+        { "type": "show-popup", "feature": "$event.feature", "fields": ["name", "type", "status"] }
+      ]
+    }
+  ],
+  "bindings": [
+    {
+      "event": "widget.layers.layer-visibility-change",
+      "actions": [
+        { "type": "set-layer-visible", "target": "$event.layerId", "visible": "$event.visible" }
+      ]
+    },
+    {
+      "event": "widget.facilitiesTable.row-click",
+      "actions": [
+        { "type": "set-state", "path": "selection.feature", "value": "$event.feature" },
+        { "type": "highlight-feature", "feature": "$event.feature" },
+        { "type": "zoom-to-feature", "feature": "$event.feature" },
+        { "type": "show-popup", "feature": "$event.feature", "fields": ["name", "type", "status"] }
+      ]
+    }
+  ]
+}

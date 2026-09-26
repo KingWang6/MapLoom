@@ -1,0 +1,1 @@
+{ "id": "facilitiesTable", "type": "attribute-table", "region": "bottom", "title": "属性表", "sourceLayer": "facilitiesLayer", "fields": ["name", "type", "status"] }

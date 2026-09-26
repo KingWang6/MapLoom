@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "1.0",
+  "name": "@maploom/spatial-analysis-plugin",
+  "packageName": "@maploom/spatial-analysis-plugin",
+  "displayName": "MapLoom Spatial Analysis Plugin",
+  "version": "0.1.0",
+  "description": "Spatial analysis widgets and actions backed by independent analysis services.",
+  "author": "MapLoom",
+  "frameworkVersion": "^0.1.0",
+  "categories": ["spatial-analysis", "widgets", "actions"],
+  "keywords": ["maploom", "gis", "spatial-analysis", "dbscan", "clustering", "site-selection", "poi", "urban-function"],
+  "widgets": [
+    {
+      "type": "dbscan-clustering-panel",
+      "title": "DBSCAN Clustering Panel",
+      "description": "Configures and runs DBSCAN point clustering.",
+      "schema": "./schemas/widgets/dbscan-clustering-panel.schema.json",
+      "emits": [{"event": "widget.{id}.run", "description": "Emitted when the user starts DBSCAN clustering."}]
+    },
+    {
+      "type": "site-selection-panel",
+      "title": "Site Selection Panel",
+      "description": "Configures and runs multi-criteria candidate-site ranking.",
+      "schema": "./schemas/widgets/site-selection-panel.schema.json",
+      "emits": [{"event": "widget.{id}.run", "description": "Emitted when the user starts site-selection analysis."}]
+    },
+    {
+      "type": "poi-grid-analysis-panel",
+      "title": "POI Grid Analysis Panel",
+      "description": "Configures and runs POI density grid analysis.",
+      "schema": "./schemas/widgets/poi-grid-analysis-panel.schema.json",
+      "emits": [{"event": "widget.{id}.run", "description": "Runs POI density grid analysis."}]
+    },
+    {
+      "type": "urban-function-analysis-panel",
+      "title": "Urban Function Analysis Panel",
+      "description": "Configures and runs urban functional-zone analysis.",
+      "schema": "./schemas/widgets/urban-function-analysis-panel.schema.json",
+      "emits": [{"event": "widget.{id}.run", "description": "Runs urban functional-zone analysis."}]
+    }
+  ],
+  "actions": [
+    {
+      "type": "run-dbscan-clustering",
+      "title": "Run DBSCAN Clustering",
+      "description": "Calls a spatial analysis service and renders the clustered point result.",
+      "schema": "./schemas/actions/run-dbscan-clustering.schema.json"
+    },
+    {
+      "type": "run-site-selection",
+      "title": "Run Site Selection",
+      "description": "Ranks candidate sites and renders the evaluation result.",
+      "schema": "./schemas/actions/run-site-selection.schema.json"
+    },
+    {
+      "type": "run-poi-grid-analysis",
+      "title": "Run POI Grid Analysis",
+      "description": "Calculates and renders POI density grids.",
+      "schema": "./schemas/actions/run-poi-grid-analysis.schema.json"
+    },
+    {
+      "type": "run-urban-function-analysis",
+      "title": "Run Urban Function Analysis",
+      "description": "Identifies and renders urban functional zones.",
+      "schema": "./schemas/actions/run-urban-function-analysis.schema.json"
+    }
+  ]
+}

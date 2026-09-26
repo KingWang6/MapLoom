@@ -1,0 +1,1 @@
+{ "$schema": "https://json-schema.org/draft/2020-12/schema", "title": "set layer style payload", "type": "object", "required": ["layerId", "style"], "properties": { "layerId": { "type": "string" }, "style": { "type": "object" } } }

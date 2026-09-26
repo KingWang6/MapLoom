@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "action-button widget",
+  "type": "object",
+  "required": ["id", "type", "region"],
+  "properties": {
+    "id": { "type": "string" },
+    "type": { "const": "action-button" },
+    "region": { "enum": ["left", "right", "bottom", "top"] },
+    "title": { "type": "string" },
+    "label": { "type": "string" },
+    "className": { "type": "string" },
+    "payload": {}
+  }
+}

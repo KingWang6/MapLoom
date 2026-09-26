@@ -1,0 +1,26 @@
+{
+  "name": "maploom-reproducibility-artifact",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "install:web": "npm install && npm --prefix cases/IUFZs-App install",
+    "build:case": "npm --prefix cases/IUFZs-App run build",
+    "build": "npm run build:case",
+    "typecheck": "npm --prefix cases/IUFZs-App run typecheck",
+    "test:mock": "node materials/scripts/test-mock-service.mjs",
+    "validate:appspec": "node materials/scripts/validate-appspec.mjs",
+    "download:osm": "node materials/scripts/download-osm-poi.mjs",
+    "prepare:osm": "node materials/scripts/prepare-osm-poi.mjs",
+    "verify:fixture": "node materials/scripts/verify-fixture.mjs",
+    "verify": "npm run typecheck && npm run build && npm run test:mock && npm run validate:appspec && npm run verify:fixture",
+    "dev:analysis": "node materials/scripts/mock-analysis-service.mjs",
+    "dev:case": "npm --prefix cases/IUFZs-App run dev"
+  },
+  "devDependencies": {
+    "ajv": "8.17.1"
+  }
+}

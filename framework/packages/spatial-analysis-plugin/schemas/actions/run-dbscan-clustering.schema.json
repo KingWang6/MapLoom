@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "run-dbscan-clustering action",
+  "type": "object",
+  "required": ["type", "sourceLayer"],
+  "properties": {
+    "type": {"const": "run-dbscan-clustering"},
+    "endpoint": {"type": "string"},
+    "sourceLayer": {},
+    "epsMeters": {},
+    "minPoints": {},
+    "statePath": {"type": "string"},
+    "resultLayerId": {"type": "string"},
+    "centerLayerTitle": {"type": "string"},
+    "hullLayerTitle": {"type": "string"}
+  },
+  "additionalProperties": true
+}

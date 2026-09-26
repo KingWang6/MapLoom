@@ -1,0 +1,23 @@
+{
+  "name": "iufzs-app",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {"node": ">=22.12.0"},
+  "scripts": {
+    "postinstall": "node fix-links.mjs",
+    "sync": "node fix-links.mjs",
+    "typecheck": "node fix-links.mjs && tsc -p tsconfig.json",
+    "dev": "node fix-links.mjs && vite . --host 127.0.0.1 --port 5176 --force",
+    "build": "node fix-links.mjs && vite build . --outDir ../../dist/IUFZs-App --emptyOutDir"
+  },
+  "dependencies": {
+    "@maploom/core": "file:../../framework/packages/core",
+    "@maploom/openlayers-adapter": "file:../../framework/packages/openlayers-adapter",
+    "@maploom/webgis-plugin": "file:../../framework/packages/webgis-plugin",
+    "@maploom/spatial-analysis-plugin": "file:../../framework/packages/spatial-analysis-plugin",
+    "ol": "10.9.0",
+    "vite": "^5.2.12"
+  },
+  "devDependencies": {"typescript": "^5.4.5"}
+}

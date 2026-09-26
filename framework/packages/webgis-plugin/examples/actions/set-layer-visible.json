@@ -1,0 +1,5 @@
+{
+  "type": "set-layer-visible",
+  "target": "$event.layerId",
+  "visible": "$event.visible"
+}

@@ -1,0 +1,5 @@
+{
+  "type": "set-layer-style",
+  "target": "$event.layerId",
+  "style": "$event.style"
+}

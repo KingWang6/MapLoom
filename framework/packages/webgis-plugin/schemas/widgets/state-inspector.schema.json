@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "state-inspector widget",
+  "type": "object",
+  "required": ["id", "type", "region", "path"],
+  "properties": {
+    "id": { "type": "string" },
+    "type": { "const": "state-inspector" },
+    "region": { "enum": ["left", "right", "bottom", "top"] },
+    "title": { "type": "string" },
+    "className": { "type": "string" },
+    "path": { "type": "string" }
+  }
+}

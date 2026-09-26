@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "attribute-table widget",
+  "type": "object",
+  "required": ["id", "type", "region", "sourceLayer", "fields"],
+  "properties": {
+    "id": { "type": "string" },
+    "type": { "const": "attribute-table" },
+    "region": { "enum": ["left", "right", "bottom", "top"] },
+    "title": { "type": "string" },
+    "className": { "type": "string" },
+    "sourceLayer": { "type": "string" },
+    "filterStatePath": { "type": "string" },
+    "fields": { "type": "array", "items": { "type": "string" } }
+  }
+}

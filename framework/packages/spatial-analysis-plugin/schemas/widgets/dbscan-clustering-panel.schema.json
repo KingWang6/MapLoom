@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DBSCAN clustering panel widget",
+  "type": "object",
+  "required": ["id", "type", "region", "sourceLayer"],
+  "properties": {
+    "id": {"type": "string"},
+    "type": {"const": "dbscan-clustering-panel"},
+    "region": {"enum": ["left", "right", "top", "bottom"]},
+    "title": {"type": "string"},
+    "sourceLayer": {"type": "string"},
+    "epsMeters": {"type": "number", "exclusiveMinimum": 0},
+    "minPoints": {"type": "integer", "minimum": 1},
+    "category": {"type": "string"},
+    "district": {"type": "string"},
+    "categoryOptions": {"type": "array"},
+    "districtOptions": {"type": "array"},
+    "showDataFilters": {"type": "boolean"},
+    "queryStatePath": {"type": "string"},
+    "statePath": {"type": "string"}
+  },
+  "additionalProperties": true
+}

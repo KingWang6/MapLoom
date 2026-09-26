@@ -1,0 +1,6 @@
+{
+  "query": {"district": "__all__"},
+  "gridSizeMeters": 1000,
+  "minPoi": 10,
+  "mixedThreshold": 0.7
+}

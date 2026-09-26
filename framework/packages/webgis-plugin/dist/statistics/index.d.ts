@@ -1,0 +1,1 @@
+export { registerStatisticsPanelWidget } from "./statisticsPanelWidget";

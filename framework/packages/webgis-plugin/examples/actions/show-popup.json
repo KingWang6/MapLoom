@@ -1,0 +1,8 @@
+{
+  "type": "show-popup",
+  "feature": "$event.feature",
+  "fields": [
+    "name",
+    "type"
+  ]
+}

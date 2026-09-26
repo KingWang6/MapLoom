@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "run-urban-function-analysis action",
+  "type": "object",
+  "required": ["type", "sourceLayer"],
+  "properties": {
+    "type": {"const": "run-urban-function-analysis"},
+    "endpoint": {"type": "string"},
+    "sourceLayer": {},
+    "gridSizeMeters": {},
+    "minPoi": {},
+    "mixedThreshold": {},
+    "category": {},
+    "district": {},
+    "query": {},
+    "statePath": {"type": "string"},
+    "resultLayerId": {"type": "string"}
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "show-popup action",
+  "type": "object",
+  "required": [
+    "type",
+    "feature",
+    "fields"
+  ],
+  "properties": {
+    "type": {
+      "const": "show-popup"
+    },
+    "feature": {},
+    "fields": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

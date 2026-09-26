@@ -1,0 +1,137 @@
+.module-nav {
+    display: flex;
+    height: 42px;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    border-bottom: 1px solid #ddd6fe;
+    background: #faf7ff;
+    color: #7c3aed;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .03em;
+}
+
+.module-nav span {
+    padding: 6px 12px;
+    border-radius: 999px;
+}
+
+.module-nav .is-active {
+    background: #ede9fe;
+    color: #5b21b6;
+}
+
+.module-nav i {
+    color: #c4b5fd;
+    font-style: normal;
+}
+
+#workspace.poi-workspace {
+    min-height: 0;
+    grid-template-columns:310px minmax(520px, 1fr) 330px;
+}
+
+.poi-workspace #left-panel, .poi-workspace #right-panel {
+    gap: 10px;
+}
+
+.poi-workspace #map-zone {
+    position: relative;
+    grid-template-rows:minmax(360px, 1fr) 230px;
+}
+
+.poi-workspace .maploom-panel, .poi-workspace .maploom-analysis-panel {
+    flex: 0 0 auto;
+    box-shadow: 0 6px 18px rgba(76, 29, 149, .06);
+}
+
+.poi-workspace .maploom-analysis-panel {
+    /*border-top: 3px solid #7c3aed;*/
+}
+
+/*.map-title { position:absolute; top:14px; left:14px; z-index:2; display:grid; padding:9px 13px; border-radius:10px; background:rgba(46,16,101,.88); color:white; pointer-events:none; }*/
+/*.map-title strong { font-size:13px; }.map-title span { color:#ddd6fe; font-size:11px; margin-top:2px; }*/
+.map-legend {
+    position: absolute;
+    right: 14px;
+    top: 14px;
+    z-index: 2;
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 430px;
+    gap: 10px;
+    padding: 8px 11px;
+    border: 1px solid #ddd6fe;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, .94);
+    color: #475569;
+    font-size: 10px;
+}
+
+.map-legend span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.map-legend i {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.legend-commerce {
+    background: #ef4444
+}
+
+.legend-living {
+    background: #f59e0b
+}
+
+.legend-education {
+    background: #8b5cf6
+}
+
+.legend-medical {
+    background: #ec4899
+}
+
+.legend-transport {
+    background: #3b82f6
+}
+
+.legend-leisure {
+    background: #22c55e
+}
+
+.legend-public {
+    background: #06b6d4
+}
+
+.legend-business {
+    background: #6366f1
+}
+
+.poi-workspace #bottom-panel {
+    min-height: 0;
+    overflow: auto;
+}
+
+.poi-workspace .maploom-analysis-form {
+    grid-template-columns:1fr 1fr;
+}
+
+.poi-workspace .maploom-analysis-run {
+    grid-column: 1/-1;
+}
+
+@media (max-width: 1100px) {
+    #workspace.poi-workspace {
+        grid-template-columns:290px minmax(520px, 1fr)
+    }
+
+    .poi-workspace #right-panel {
+        display: none
+    }
+}

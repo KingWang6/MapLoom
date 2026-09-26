@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "statistics-panel widget",
+  "type": "object",
+  "required": ["id", "type", "region", "sourceLayer", "metrics"],
+  "properties": {
+    "id": { "type": "string" },
+    "type": { "const": "statistics-panel" },
+    "region": { "enum": ["left", "right", "bottom", "top"] },
+    "title": { "type": "string" },
+    "className": { "type": "string" },
+    "sourceLayer": { "type": "string" },
+    "filterStatePath": { "type": "string" },
+    "metrics": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["type"],
+        "properties": {
+          "type": { "enum": ["count", "sum", "group-count"] },
+          "field": { "type": "string" },
+          "groupBy": { "type": "string" },
+          "label": { "type": "string" }
+        }
+      }
+    }
+  }
+}

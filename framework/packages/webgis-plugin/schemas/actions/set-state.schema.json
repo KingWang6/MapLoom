@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "set-state action",
+  "type": "object",
+  "required": [
+    "type",
+    "path",
+    "value"
+  ],
+  "properties": {
+    "type": {
+      "const": "set-state"
+    },
+    "path": {
+      "type": "string"
+    },
+    "value": {}
+  }
+}

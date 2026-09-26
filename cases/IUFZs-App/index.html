@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>IUFZs-App | Urban Functional Zone Identification</title>
+</head>
+<body style="--case-accent:#7c3aed;--case-accent-dark:#4c1d95">
+<div id="app-shell">
+    <header id="top-panel">
+        <div class="brand">
+            <div class="brand-mark">IU</div>
+            <div>
+                <div class="brand-title">IUFZs-App</div>
+                <div class="brand-subtitle">POI Overview · Spatial Hotspots · Urban Functional Zones · Nanjing Case</div>
+            </div>
+        </div>
+        <!--        <div class="case-badge">Declarative Spatial Analysis</div>-->
+    </header>
+    <!--    <nav class="module-nav" aria-label="Analysis modules">-->
+    <!--        <span class="is-active">01 POI Overview</span><i>→</i><span>02 Hotspot Analysis</span><i>→</i><span>03 Functional Identification</span>-->
+    <!--    </nav>-->
+    <main id="workspace" class="poi-workspace">
+        <aside id="left-panel">
+            <!--            <div class="case-note"><strong>Data Query</strong>POIs are loaded by district and category from the backend. The default view returns at most 10,000 points, while analysis tasks use the complete cleaned dataset on the server.-->
+            <!--            </div>-->
+        </aside>
+        <section id="map-zone">
+            <div id="map"></div>
+            <!--      <div class="map-title"><strong>Nanjing POI Distribution</strong><span>Click POIs or analytical grids to inspect attributes</span></div>-->
+            <div class="map-legend" aria-label="POI urban function legend">
+                <span><i class="legend-commerce"></i>Commercial Consumption</span>
+                <span><i class="legend-living"></i>Residential Services</span>
+                <span><i class="legend-education"></i>Education &amp; Culture</span>
+                <span><i class="legend-medical"></i>Healthcare</span>
+                <span><i class="legend-transport"></i>Transport Facilities</span>
+                <span><i class="legend-leisure"></i>Leisure &amp; Recreation</span>
+                <span><i class="legend-public"></i>Public Administration</span>
+                <span><i class="legend-business"></i>Business &amp; Employment</span>
+            </div>
+            <div id="bottom-panel"></div>
+        </section>
+        <aside id="right-panel">
+            <!--            <div class="case-note"><strong>Interpretation Boundary</strong>Functional zones are identified from POI composition, location quotient, and mixed-use degree. They are not equivalent to statutory land use or actual population activity.-->
+            <!--            </div>-->
+        </aside>
+    </main>
+</div>
+<script type="module" src="/src/main.ts"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "filter change event",
+  "type": "object",
+  "required": [
+    "filter"
+  ],
+  "properties": {
+    "filter": {
+      "type": "object"
+    }
+  }
+}

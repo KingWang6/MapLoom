@@ -1,0 +1,1 @@
+{ "id": "styleSwitcher", "type": "style-switcher", "region": "left", "title": "专题样式", "targetLayer": "facilitiesLayer", "styles": [{ "id": "simple", "label": "默认样式", "style": { "type": "simple", "color": "#2563eb" } }] }

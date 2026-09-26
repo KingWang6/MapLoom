@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "emit-event action",
+  "type": "object",
+  "required": [
+    "type",
+    "event"
+  ],
+  "properties": {
+    "type": {
+      "const": "emit-event"
+    },
+    "event": {
+      "type": "string"
+    },
+    "payload": {}
+  }
+}

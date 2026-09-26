@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "layer-list widget",
+  "type": "object",
+  "required": ["id", "type", "region", "layers"],
+  "properties": {
+    "id": { "type": "string" },
+    "type": { "const": "layer-list" },
+    "region": { "enum": ["left", "right", "bottom", "top"] },
+    "title": { "type": "string" },
+    "className": { "type": "string" },
+    "layers": { "type": "array", "items": { "type": "string" } }
+  }
+}

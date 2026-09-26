@@ -1,0 +1,78 @@
+:root {
+    --maploom-panel-bg: #ffffff;
+    --maploom-border: #dbe4ef;
+    --maploom-text: #0f172a;
+    --maploom-muted: #64748b;
+}
+
+.maploom-map-popup {
+    position: relative;
+    background: var(--maploom-panel-bg);
+    border: 1px solid var(--maploom-border);
+    border-radius: 12px;
+    padding: 12px 36px 12px 12px;
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.18);
+    color: var(--maploom-text);
+    font-size: 13px;
+    min-width: 180px;
+    max-width: 280px;
+    pointer-events: auto;
+}
+
+.maploom-map-popup::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -7px;
+    width: 12px;
+    height: 12px;
+    background: var(--maploom-panel-bg);
+    border-right: 1px solid var(--maploom-border);
+    border-bottom: 1px solid var(--maploom-border);
+    transform: translateX(-50%) rotate(45deg);
+}
+
+.maploom-map-popup-close {
+    position: absolute;
+    top: 6px;
+    right: 8px;
+    width: 22px;
+    height: 22px;
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    color: var(--maploom-muted);
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 20px;
+    padding: 0;
+}
+
+.maploom-map-popup-close:hover {
+    background: #f1f5f9;
+    color: var(--maploom-text);
+}
+
+.maploom-map-popup-content {
+    display: grid;
+    gap: 4px;
+}
+
+.maploom-map-popup-row {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 6px;
+    align-items: baseline;
+}
+
+.maploom-map-popup-row strong {
+    color: var(--maploom-muted);
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.maploom-map-popup-row span {
+    text-align: left;
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
