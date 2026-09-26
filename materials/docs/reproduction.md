@@ -16,7 +16,7 @@ The frozen Nanjing boundary, raw OSM snapshots, prepared POIs, and representativ
 npm run verify
 ```
 
-This command builds the case against the released obfuscated framework packages, tests the recorded-response mock, validates AppSpec, and verifies POI identifiers, fields, district containment, licensing metadata, and recorded response summaries.
+This command builds the case against the released obfuscated framework packages, tests the recorded-response mock, validates the public reproduction AppSpec, and verifies POI identifiers, fields, district containment, licensing metadata, and recorded response summaries.
 
 These checks verify artifact integrity and framework-level integration. They do not rerun or validate the external analytical algorithms.
 
@@ -38,18 +38,21 @@ npm run dev:case
 
 Open <http://127.0.0.1:5176>.
 
-## 4. Inspect the contracts
+## 4. Inspect the contracts and AppSpec configurations
 
 - `materials/appspec/appspec-v0.1.schema.json`: stable AppSpec core structure;
-- `materials/appspec/iufzs-appspec.json`: complete JSON case specification;
+- `materials/appspec/iufzs-manuscript-appspec.json`: AppSpec configuration corresponding to the manuscript experiments;
+- `materials/appspec/iufzs-reproduction-appspec.json`: runnable configuration adapted to the released OSM-based Nanjing fixture;
 - `materials/service-contract/openapi.yaml`: external analytical-service boundary;
 - `materials/service-contract/overpass/nanjing-poi.overpassql`: OSM selection query;
 - `materials/service-contract/requests/`: representative analysis requests;
 - `materials/test-fixture/expected-results/`: recorded responses.
 
+The manuscript and reproduction AppSpecs intentionally differ in several data-dependent parameters. The manuscript configuration records the parameters reported in the paper, whereas the public reproduction configuration is tuned for the redistributable OSM fixture. These differences do not alter the AppSpec structure, plugin interfaces, or runtime coordination mechanism under evaluation.
+
 ## 5. Optional OSM refresh
 
-The committed snapshot should be used for exact reproduction. To intentionally refresh it from live OSM:
+The committed snapshot should be used for exact reproduction of the released artifact. To intentionally refresh it from live OSM:
 
 ```powershell
 npm run download:osm
@@ -62,6 +65,6 @@ The downloader caches each queried tag family and uses serial requests. A refres
 
 - The external analytical-service implementation is intentionally not released.
 - Recorded responses allow the integration workflow to run but do not demonstrate analytical correctness or recomputation.
-- The OSM replacement dataset differs from the restricted manuscript dataset and must not be used to reproduce the manuscript benchmark.
+- The OSM replacement dataset differs from the restricted manuscript dataset and must not be used to reproduce the manuscript's numerical analytical results or benchmark timings.
 - OSM completeness and tagging density vary spatially; observed density is partly a mapping-coverage effect.
 - The artifact verifies one OpenLayers implementation rather than cross-engine portability.
