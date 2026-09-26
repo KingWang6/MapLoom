@@ -2,7 +2,7 @@
 
 This repository accompanies the manuscript **“A Declarative Modeling Method for Geospatial Applications.”** It provides an executable artifact for inspecting the framework and reproducing the application workflow demonstrated by the **IUFZs-App** Nanjing POI case.
 
-The repository includes the AppSpec specification, obfuscated executable framework packages, a runnable case application, a public Nanjing boundary, and 16,488 POIs derived from an OpenStreetMap snapshot. The released OSM dataset replaces the restricted dataset used in the manuscript; it supports software reproduction, but it must not be treated as a reproduction of the manuscript's substantive urban findings or benchmark timings.
+The repository includes the AppSpec JSON Schema, a manuscript-reference AppSpec configuration, a separate runnable reproduction AppSpec, obfuscated executable framework packages, a runnable case application, a public Nanjing boundary, and 16,488 POIs derived from an OpenStreetMap snapshot. The released OSM dataset replaces the restricted dataset used in the manuscript; it supports framework-level software reproduction, but it must not be treated as a reproduction of the manuscript's numerical analytical results or benchmark timings.
 
 ## Case demonstration
 
@@ -34,12 +34,14 @@ The functional-zone analysis summarizes the POI composition of each grid cell an
 
 ## Released contents
 
-- **AppSpec:** the AppSpec v0.1 JSON Schema and a complete executable IUFZs-App specification;
+- **AppSpec:** the AppSpec v0.1 JSON Schema, an AppSpec configuration corresponding to the manuscript experiments, and a separate runnable AppSpec adapted to the public OSM fixture;
 - **Framework:** obfuscated executable packages for the core runtime, plugin registry, event–Action execution, shared State, OpenLayers adapter, WebGIS widgets, and spatial-analysis integration;
 - **Case:** the runnable IUFZs-App browser application;
 - **Data:** a WGS84 boundary for Nanjing's 11 districts and 16,488 OSM-derived POIs mapped to the case's nine-field POI schema;
 - **Reproduction materials:** Overpass queries, raw OSM source snapshots, processing scripts, an OpenAPI contract, recorded analytical responses, and verification utilities;
 - **Documentation:** environment, implementation-scope, plugin-contract, provenance, and reproduction notes.
+
+The manuscript-reference AppSpec records the configuration reported in the paper, whereas the runnable reproduction AppSpec is adapted to the independently redistributable OSM-based fixture. Data-dependent parameter differences between the two configurations do not change the AppSpec structure, plugin interfaces, or runtime coordination mechanism exercised by the artifact.
 
 ## Quick start
 
@@ -75,12 +77,18 @@ framework/                  Obfuscated executable MapLoom packages
 cases/
   IUFZs-App/                Runnable Nanjing POI case application
 materials/
-  appspec/                  AppSpec Schema and complete IUFZs-App specification
+  appspec/                  AppSpec Schema plus manuscript and reproduction configurations
   service-contract/         External-service and Overpass query contracts
   test-fixture/             Nanjing boundary, OSM POIs, and recorded results
   docs/                     Scope, environment, contracts, and screenshots
   scripts/                  Data preparation, mock-service, and verification tools
 ```
+
+Key AppSpec files:
+
+- `materials/appspec/appspec-v0.1.schema.json` — AppSpec JSON Schema;
+- `materials/appspec/iufzs-manuscript-appspec.json` — configuration corresponding to the manuscript experiments;
+- `materials/appspec/iufzs-reproduction-appspec.json` — runnable configuration for the released OSM fixture.
 
 ## Verification boundary
 
