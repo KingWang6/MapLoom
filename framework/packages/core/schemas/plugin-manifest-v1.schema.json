@@ -46,7 +46,7 @@
     },
     "widget": {
       "type": "object",
-      "required": ["type", "description", "schema", "examples"],
+      "required": ["type", "description", "schema"],
       "properties": {
         "type": { "type": "string" },
         "title": { "type": "string" },
@@ -59,7 +59,7 @@
     },
     "action": {
       "type": "object",
-      "required": ["type", "description", "schema", "examples"],
+      "required": ["type", "description", "schema"],
       "properties": {
         "type": { "type": "string" },
         "title": { "type": "string" },
