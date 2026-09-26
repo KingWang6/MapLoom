@@ -2,7 +2,7 @@
 
 This repository accompanies the manuscript **“A Declarative Modeling Method for Geospatial Applications.”** It provides an executable artifact for inspecting the framework and reproducing the application workflow demonstrated by the **IUFZs-App** Nanjing POI case.
 
-The repository includes the AppSpec JSON Schema, a manuscript-reference AppSpec configuration, a separate runnable reproduction AppSpec, obfuscated executable framework packages, a runnable case application, a public Nanjing boundary, and 16,488 POIs derived from an OpenStreetMap snapshot. The released OSM dataset replaces the restricted dataset used in the manuscript; it supports framework-level software reproduction, but it must not be treated as a reproduction of the manuscript's numerical analytical results or benchmark timings.
+The repository includes the AppSpec JSON Schema, a manuscript-reference AppSpec configuration, a separate runnable reproduction AppSpec, executable framework packages, a runnable case application, a public Nanjing boundary, and 16,488 POIs derived from an OpenStreetMap snapshot. The released OSM dataset replaces the restricted dataset used in the manuscript; it supports framework-level software reproduction, but it must not be treated as a reproduction of the manuscript's numerical analytical results or benchmark timings.
 
 ## Case demonstration
 
