@@ -4,6 +4,8 @@ A plugin exports a manifest and a runtime registration function. The manifest de
 
 During execution, a Binding associates a named event with an ordered Action list. The runtime resolves complete-string `$event`, `$event.path`, `$state`, and `$state.path` references when each Action is invoked. Actions receive access to shared State, the map adapter, the event bus, value resolution, and optional performance tracing.
 
+Widget and Action manifest entries require a capability type, description, and configuration schema. Example configurations may additionally be supplied to document representative AppSpec usage, but examples are optional and are not required for runtime registration.
+
 The core contract and released manifests are executable in this repository. Framework implementations are provided as obfuscated JavaScript distributions with TypeScript declaration files; implementation source is not included. Automatic composition of all type-specific schemas, compatibility validation among independently developed plugins, dependency resolution, and version negotiation are outside the current implementation.
 
 Released contract and distribution locations:
