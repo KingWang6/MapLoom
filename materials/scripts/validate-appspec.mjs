@@ -2,7 +2,7 @@ import {readFile} from "node:fs/promises";
 import Ajv2020 from "ajv/dist/2020.js";
 
 const schema = JSON.parse(await readFile(new URL("../appspec/appspec-v0.1.schema.json", import.meta.url), "utf8"));
-const spec = JSON.parse(await readFile(new URL("../appspec/iufzs-appspec.json", import.meta.url), "utf8"));
+const spec = JSON.parse(await readFile(new URL("../appspec/iufzs-reproduction-appspec.json", import.meta.url), "utf8"));
 const ajv = new Ajv2020({allErrors: true, strict: false});
 const validate = ajv.compile(schema);
 
@@ -32,6 +32,7 @@ if (errors.length) throw new Error(`AppSpec semantic validation failed:\n${error
 
 console.log(JSON.stringify({
     status: "passed",
+    appSpec: "materials/appspec/iufzs-reproduction-appspec.json",
     sourceCount: spec.sources?.length ?? 0,
     layerCount: spec.layers?.length ?? 0,
     widgetCount: spec.widgets?.length ?? 0,
